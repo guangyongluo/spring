@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="daoTemplate" abstract="true">
+		<property name="databaseOperations" ref="databaseOperations" />
+	</bean>
+
+	<bean id="databaseOperations"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.utils.DatabaseOperations" />
+
+	<bean id="fixedDepositcontroller"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.controller.FixedDepositControllerImpl">
+		<property name="fixedDepositService" ref="fixedDepositService" />
+	</bean>
+
+	<bean id="fixedDepositService"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.service.FixedDepositServiceImpl">
+		<property name="fixedDepositDao" ref="fixedDepositDao" />
+	</bean>
+
+	<bean id="fixedDepositDao" parent="daoTemplate"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.dao.FixedDepositDaoImpl" />
+
+	<bean id="fixedDepositDetails"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.domain.FixedDepositDetails"
+		scope="prototype" />
+
+	<bean id="personalBankingController"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.controller.PersonalBankingControllerImpl">
+		<property name="personalBankingService" ref="personalBankingService" />
+	</bean>
+
+	<bean id="personalBankingService"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.service.PersonalBankingServiceImpl">
+		<property name="personalBankingDao" ref="personalBankingDao" />
+	</bean>
+
+	<bean id="personalBankingDao" parent="daoTemplate"
+		class="com.vilin.spring.chapter03.bankapp.inheritance.dao.PersonalBankingDaoImpl" />
+
+</beans>

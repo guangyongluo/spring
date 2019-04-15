@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="daoTemplate" abstract="true">
+		<property name="databaseOperations" ref="databaseOperations" />
+	</bean>
+
+	<bean id="databaseOperations" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.utils.DatabaseOperations" />
+
+	<bean id="serviceTemplate" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.base.ServiceTemplate">
+		<constructor-arg ref="emailMessageSender" />
+		<constructor-arg ref="jmsMessageSender" />
+		<constructor-arg ref="webServiceInvoker" />
+	</bean>
+
+	<bean id="jmsMessageSender" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.base.JmsMessageSender" />
+	<bean id="webServiceInvoker" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.base.WebServiceInvoker" />
+	<bean id="emailMessageSender" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.base.EmailMessageSender" />
+
+	<bean id="controllerFactory" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.controller.ControllerFactory" />
+
+	<bean id="controllerTemplate" factory-bean="controllerFactory"
+		factory-method="getController" abstract="true">
+	</bean>
+
+	<bean id="fixedDepositcontroller" parent="controllerTemplate">
+		<constructor-arg index="0" value="fixedDepositController" />
+		<property name="fixedDepositService" ref="fixedDepositService" />
+	</bean>
+
+	<bean id="fixedDepositService" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.service.FixedDepositServiceImpl" parent="serviceTemplate">
+		<property name="fixedDepositDao" ref="fixedDepositDao" />
+	</bean>
+
+	<bean id="fixedDepositDao" parent="daoTemplate" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.dao.FixedDepositDaoImpl" />
+
+	<bean id="fixedDepositDetails" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.domain.FixedDepositDetails" scope="prototype" />
+
+	<bean id="personalBankingController" parent="controllerTemplate">
+		<constructor-arg index="0" value="personalBankingController" />
+		<property name="personalBankingService" ref="personalBankingService" />
+	</bean>
+
+	<bean id="personalBankingService" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.service.PersonalBankingServiceImpl" parent="serviceTemplate">
+		<property name="personalBankingDao" ref="personalBankingDao" />
+	</bean>
+
+	<bean id="personalBankingDao" parent="daoTemplate" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.dao.PersonalBankingDaoImpl" />
+
+	<bean id="userRequestController" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.controller.UserRequestControllerImpl">
+		<constructor-arg index="0" ref="serviceTemplate" />
+	</bean>
+
+	<bean id="transferFundsService" class="com.vilin.spring.chapter03.bankapp.constructor.args.type.service.TransferFundsServiceImpl">
+		<constructor-arg type="java.lang.String" value="http://someUrl.com/xyz" />
+		<constructor-arg type="boolean" value="true" />
+		<constructor-arg type="int" value="5" />
+		<constructor-arg type="long" value="200" />
+	</bean>
+</beans>
