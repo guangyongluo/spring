@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="service" class="com.vilin.spring.chapter04.bankapp.dependencies.service.FixedDepositServiceImpl" depends-on="eventSenderSelectorService">
+		<property name="fixedDepositDao">
+			<bean class="com.vilin.spring.chapter04.bankapp.dependencies.dao.FixedDepositDaoImpl" />
+		</property>
+		<constructor-arg index="0" value="com/vilin/spring/chapter04/bankapp/dependencies/config/appConfig.properties" />
+	</bean>
+
+	<bean id="eventSenderSelectorService" class="com.vilin.spring.chapter04.bankapp.dependencies.service.EventSenderSelectorServiceImpl">
+		<constructor-arg index="0" value="com/vilin/spring/chapter04/bankapp/dependencies/config/appConfig.properties" />
+	</bean>
+
+	<bean id="customerRequestService" class="com.vilin.spring.chapter04.bankapp.dependencies.service.CustomerRequestServiceImpl">
+		<constructor-arg name="customerRequestDetails" ref="customerRequestDetails" />
+		<constructor-arg name="customerRequestDao" ref="customerRequestDao" />
+	</bean>
+
+	<bean id="customerRequestDetails" class="com.vilin.spring.chapter04.bankapp.dependencies.domain.CustomerRequestDetails" scope="prototype" />
+
+	<bean id="customerRequestDao" class="com.vilin.spring.chapter04.bankapp.dependencies.dao.CustomerRequestDaoImpl" />
+
+	<bean id="customerRegistrationService" class="com.vilin.spring.chapter04.bankapp.dependencies.service.CustomerRegistrationServiceImpl" scope="prototype">
+		<constructor-arg name="customerRegistrationDetails" ref="customerRegistrationDetails" />
+		<constructor-arg name="customerRegistrationDao" ref="customerRegistrationDao" />
+	</bean>
+
+	<bean id="customerRegistrationDetails" class="com.vilin.spring.chapter04.bankapp.dependencies.domain.CustomerRegistrationDetails" scope="prototype" />
+
+	<bean id="customerRegistrationDao" class="com.vilin.spring.chapter04.bankapp.dependencies.dao.CustomerRegistrationDaoImpl" />
+</beans>
