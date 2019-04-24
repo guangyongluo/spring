@@ -1,10 +1,10 @@
-package com.vilin.spring.chapter04.bankapp.lookup.method.service;
+package com.vilin.spring.chapter04.bankapp.replaced.method.service;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 
-import com.vilin.spring.chapter04.bankapp.lookup.method.Constants;
+import com.vilin.spring.chapter04.bankapp.replaced.method.Constants;
 import org.springframework.core.io.ClassPathResource;
 
 
@@ -17,7 +17,7 @@ public class EventSenderSelectorServiceImpl {
 		Properties properties = new Properties();
 		properties
 				.setProperty(Constants.EVENT_SENDER_CLASS_PROPERTY,
-						"com.vilin.spring.chapter04.bankapp.lookup.method.event.DatabaseEventSender");
+						"com.vilin.spring.chapter04.bankapp.replaced.method.event.DatabaseEventSender");
 		properties.store(os, null);
 		properties.list(System.out);
 		os.flush();
