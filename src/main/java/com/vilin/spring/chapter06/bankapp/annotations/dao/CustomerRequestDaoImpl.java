@@ -1,0 +1,20 @@
+package com.vilin.spring.chapter06.bankapp.annotations.dao;
+
+import com.vilin.spring.chapter06.bankapp.annotations.domain.CustomerRequestDetails;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
+
+@Repository(value = "customerRequestDao")
+public class CustomerRequestDaoImpl implements CustomerRequestDao {
+	private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
+	public CustomerRequestDaoImpl() {
+		logger.info("Created CustomerRequestDaoImpl instance");
+	}
+
+	@Override
+	public void submitRequest(CustomerRequestDetails userRequestDetails) {
+		// --save UserRequestDetails
+	}
+}
