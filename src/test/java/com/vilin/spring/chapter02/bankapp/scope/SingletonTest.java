@@ -30,7 +30,7 @@ public class SingletonTest {
 	public void testReference() {
 		FixedDepositController controller = (FixedDepositController) context.getBean("controller");
 		FixedDepositDao fixedDepositDao1 = controller.getFixedDepositService().getFixedDepositDao();
-		FixedDepositDao fixedDepositDao2 = (FixedDepositDao) context.getBean("dao");
+		FixedDepositDao fixedDepositDao2 = (FixedDepositDao) context.getBean("mapper");
 
 		assertSame("Different FixedDepositDao instances", fixedDepositDao1, fixedDepositDao2);
 	}
@@ -47,7 +47,7 @@ public class SingletonTest {
 
 	@Test
 	public void testSingletonScopePerBeanDef() {
-		FixedDepositDao fixedDepositDao1 = (FixedDepositDao) context.getBean("dao");
+		FixedDepositDao fixedDepositDao1 = (FixedDepositDao) context.getBean("mapper");
 		FixedDepositDao fixedDepositDao2 = (FixedDepositDao) context.getBean("anotherDao");
 
 		assertNotSame("Same FixedDepositDao instances", fixedDepositDao1, fixedDepositDao2);
