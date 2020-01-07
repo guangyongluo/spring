@@ -13,8 +13,7 @@
 
 	<bean id="dao" class="com.vilin.spring.chapter02.bankapp.scope.dao.FixedDepositDaoImpl" />
 
-	<bean id="fixedDepositDetails" class="com.vilin.spring.chapter02.bankapp.scope.domain.FixedDepositDetails"
-		scope="prototype" />
+	<bean id="fixedDepositDetails" class="com.vilin.spring.chapter02.bankapp.scope.domain.FixedDepositDetails" scope="prototype" />
 
 	<bean id="anotherDao" class="com.vilin.spring.chapter02.bankapp.scope.dao.FixedDepositDaoImpl" />
 

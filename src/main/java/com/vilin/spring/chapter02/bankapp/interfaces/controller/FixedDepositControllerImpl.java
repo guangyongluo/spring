@@ -13,7 +13,8 @@ public class FixedDepositControllerImpl implements FixedDepositController {
 	public FixedDepositControllerImpl() {
 		logger.info("initializing");
 	}
-	
+
+	@Override
 	public FixedDepositService getFixedDepositService() {
 		return fixedDepositService;
 	}
@@ -22,12 +23,13 @@ public class FixedDepositControllerImpl implements FixedDepositController {
 		logger.info("Setting fixedDepositService property");
 		this.fixedDepositService = fixedDepositService;
 	}
-	
+
+	@Override
 	public boolean submit() {
-		return fixedDepositService.createFixedDeposit(new FixedDepositDetails(
-				1, 10000, 365, "someemail@something.com"));
+		return fixedDepositService.createFixedDeposit(new FixedDepositDetails(1, 10000, 365, "someemail@something.com"));
 	}
-	
+
+	@Override
 	public FixedDepositDetails get() {
 		return fixedDepositService.getFixedDepositDetails(1L);
 	}

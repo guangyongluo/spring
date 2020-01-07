@@ -17,10 +17,12 @@ public class FixedDepositDaoImpl implements FixedDepositDao {
 		logger.info("initializing");
 	}
 
+	@Override
 	public FixedDepositDetails getFixedDepositDetails(long id) {
 		return databaseOperations.loadFd(id);
 	}
 
+	@Override
 	public boolean createFixedDeposit(FixedDepositDetails fdd) {
 		return databaseOperations.saveFd(fdd);
 	}

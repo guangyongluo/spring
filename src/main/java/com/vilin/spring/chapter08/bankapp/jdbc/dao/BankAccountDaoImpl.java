@@ -32,6 +32,7 @@ public class BankAccountDaoImpl implements BankAccountDao {
 		return key.intValue();
 	}
 
+	@Override
 	public void subtractFromAccount(int bankAccountId, int amount) {
 		jdbcTemplate.update("update bank_account_details set balance_amount = ? where account_id = ?", amount, bankAccountId);
 	}

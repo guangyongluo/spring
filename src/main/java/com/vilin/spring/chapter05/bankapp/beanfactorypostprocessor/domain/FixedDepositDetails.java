@@ -1,13 +1,16 @@
 package com.vilin.spring.chapter05.bankapp.beanfactorypostprocessor.domain;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class FixedDepositDetails {
+	private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	private long id;
 	private float depositAmount;
 	private int tenure;
 	private String email;
 
-	public FixedDepositDetails() {
-	}
+	public FixedDepositDetails() { logger.info("FixedDepositDetails's constructor invoked");}
 
 	public long getId() {
 		return id;

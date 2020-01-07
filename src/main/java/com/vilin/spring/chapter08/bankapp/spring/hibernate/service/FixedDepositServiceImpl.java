@@ -20,7 +20,8 @@ public class FixedDepositServiceImpl implements FixedDepositService {
 	@Transactional
 	public int createFixedDeposit(FixedDepositDetails fdd) throws Exception {
 		// -- create fixed deposit
-		bankAccountDao.subtractFromAccount(fdd.getBankAccountId().getAccountId(), fdd.getFdAmount());
+		bankAccountDao.subtractFromAccount(fdd.getBankAccountId()
+				.getAccountId(), fdd.getFdAmount());
 		return myFixedDepositDao.createFixedDeposit(fdd);
 	}
 

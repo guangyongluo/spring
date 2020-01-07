@@ -14,6 +14,7 @@ public class FixedDepositServiceImpl implements FixedDepositService {
 		logger.info("initializing");
 	}
 
+	@Override
 	public FixedDepositDao getFixedDepositDao() {
 		return fixedDepositDao;
 	}
@@ -23,10 +24,12 @@ public class FixedDepositServiceImpl implements FixedDepositService {
 		this.fixedDepositDao = fixedDepositDao;
 	}
 
+	@Override
 	public FixedDepositDetails getFixedDepositDetails(long id) {
 		return fixedDepositDao.getFixedDepositDetails(id);
 	}
 
+	@Override
 	public boolean createFixedDeposit(FixedDepositDetails fdd) {
 		return fixedDepositDao.createFixedDeposit(fdd);
 	}

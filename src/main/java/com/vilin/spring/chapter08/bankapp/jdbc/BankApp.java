@@ -1,7 +1,6 @@
 package com.vilin.spring.chapter08.bankapp.jdbc;
 
 import java.util.Date;
-
 import com.vilin.spring.chapter08.bankapp.jdbc.domain.BankAccountDetails;
 import com.vilin.spring.chapter08.bankapp.jdbc.domain.FixedDepositDetails;
 import com.vilin.spring.chapter08.bankapp.jdbc.service.BankAccountService;
@@ -32,7 +31,7 @@ public class BankApp {
 		fdd.setActive("Y");
 		fdd.setBankAccountId(bankAccountId);
 		fdd.setFdCreationDate(new Date());
-		fdd.setFdAmount(500);
+		fdd.setFdAmount(800);
 		fdd.setTenure(12);
 		int fixedDepositId = fixedDepositService.createFixedDeposit(fdd);
 		logger.info("Created fixed deposit with id - " + fixedDepositId);

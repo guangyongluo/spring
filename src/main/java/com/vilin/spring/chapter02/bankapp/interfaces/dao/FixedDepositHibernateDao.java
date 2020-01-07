@@ -16,11 +16,13 @@ public class FixedDepositHibernateDao implements FixedDepositDao{
 	public FixedDepositHibernateDao() {
 		logger.info("initializing");
 	}
-	
+
+	@Override
 	public FixedDepositDetails getFixedDepositDetails(long id) {
 		return fixedDeposits.get(id);
 	}
 
+	@Override
 	public boolean createFixedDeposit(FixedDepositDetails fdd) {
 		fixedDeposits.put(fdd.getId(), fdd);
 		return true;

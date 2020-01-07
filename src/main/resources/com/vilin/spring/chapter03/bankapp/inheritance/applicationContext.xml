@@ -7,37 +7,29 @@
 		<property name="databaseOperations" ref="databaseOperations" />
 	</bean>
 
-	<bean id="databaseOperations"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.utils.DatabaseOperations" />
+	<bean id="databaseOperations" class="com.vilin.spring.chapter03.bankapp.inheritance.utils.DatabaseOperations" />
 
-	<bean id="fixedDepositcontroller"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.controller.FixedDepositControllerImpl">
+	<bean id="fixedDepositcontroller" class="com.vilin.spring.chapter03.bankapp.inheritance.controller.FixedDepositControllerImpl">
 		<property name="fixedDepositService" ref="fixedDepositService" />
 	</bean>
 
-	<bean id="fixedDepositService"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.service.FixedDepositServiceImpl">
+	<bean id="fixedDepositService" class="com.vilin.spring.chapter03.bankapp.inheritance.service.FixedDepositServiceImpl">
 		<property name="fixedDepositDao" ref="fixedDepositDao" />
 	</bean>
 
-	<bean id="fixedDepositDao" parent="daoTemplate"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.dao.FixedDepositDaoImpl" />
+	<bean id="fixedDepositDao" parent="daoTemplate" class="com.vilin.spring.chapter03.bankapp.inheritance.dao.FixedDepositDaoImpl" />
 
-	<bean id="fixedDepositDetails"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.domain.FixedDepositDetails"
+	<bean id="fixedDepositDetails" class="com.vilin.spring.chapter03.bankapp.inheritance.domain.FixedDepositDetails"
 		scope="prototype" />
 
-	<bean id="personalBankingController"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.controller.PersonalBankingControllerImpl">
+	<bean id="personalBankingController" class="com.vilin.spring.chapter03.bankapp.inheritance.controller.PersonalBankingControllerImpl">
 		<property name="personalBankingService" ref="personalBankingService" />
 	</bean>
 
-	<bean id="personalBankingService"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.service.PersonalBankingServiceImpl">
+	<bean id="personalBankingService" class="com.vilin.spring.chapter03.bankapp.inheritance.service.PersonalBankingServiceImpl">
 		<property name="personalBankingDao" ref="personalBankingDao" />
 	</bean>
 
-	<bean id="personalBankingDao" parent="daoTemplate"
-		class="com.vilin.spring.chapter03.bankapp.inheritance.dao.PersonalBankingDaoImpl" />
+	<bean id="personalBankingDao" parent="daoTemplate" class="com.vilin.spring.chapter03.bankapp.inheritance.dao.PersonalBankingDaoImpl" />
 
 </beans>

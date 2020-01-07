@@ -12,7 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BankApp {
-	private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+	private static Logger logger = LogManager.getLogger(BankApp.class);
 
 	public static void main(String args[]) throws Exception {
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(
@@ -33,7 +33,7 @@ public class BankApp {
 		fdd.setActive("Y");
 		fdd.setBankAccountId(bankAccountDetails);
 		fdd.setFdCreationDate(new Date());
-		fdd.setFdAmount(500);
+		fdd.setFdAmount(800);
 		fdd.setTenure(12);
 		int fixedDepositId = fixedDepositService.createFixedDeposit(fdd);
 		logger.info("Created fixed deposit with id - " + fixedDepositId);
