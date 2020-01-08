@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+
 @Repository(value = "fixedDepositDao")
 public class FixedDepositDaoImpl implements FixedDepositDao {
 
@@ -27,16 +28,20 @@ public class FixedDepositDaoImpl implements FixedDepositDao {
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	public int createFixedDeposit(final FixedDepositDetails fdd) {
-		final String sql = "insert into fixed_deposit_details(account_id, fd_creation_date, amount, tenure, active) values(?, ?, ?, ?, ?)";
+		final String sql = "insert into fixed_deposit_details(account_id, fd_creation_date, amount, tenure, active) "
+				+ "values(?, ?, ?, ?, ?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		jdbcTemplate.update(new PreparedStatementCreator() {
 
 			@Override
-			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(sql, new String[] { "fixed_deposit_id" });
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				PreparedStatement ps = con.prepareStatement(sql,
+						new String[] { "fixed_deposit_id" });
 				ps.setInt(1, fdd.getBankAccountId());
-				ps.setDate(2, new java.sql.Date(fdd.getFdCreationDate().getTime()));
+				ps.setDate(2, new java.sql.Date(fdd.getFdCreationDate()
+						.getTime()));
 				ps.setInt(3, fdd.getFdAmount());
 				ps.setInt(4, fdd.getTenure());
 				ps.setString(5, fdd.getActive());

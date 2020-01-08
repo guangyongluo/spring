@@ -24,15 +24,19 @@ public class FixedDepositServiceImpl implements FixedDepositService {
 	private BankAccountDao bankAccountDao;
 
 	@Override
-	public int createFixedDeposit(final FixedDepositDetails fixedDepositDetails) throws Exception {
+	public int createFixedDeposit(final FixedDepositDetails fixedDepositDetails)
+			throws Exception {
 		// -- create fixed deposit
-		transactionTemplate.execute(new TransactionCallback<FixedDepositDetails>() {
+		transactionTemplate
+				.execute(new TransactionCallback<FixedDepositDetails>() {
 
 					@Override
-					public FixedDepositDetails doInTransaction(TransactionStatus status) {
+					public FixedDepositDetails doInTransaction(
+							TransactionStatus status) {
 						try {
 							myFixedDepositDao.createFixedDeposit(fixedDepositDetails);
-							bankAccountDao.subtractFromAccount(fixedDepositDetails.getBankAccountId(), fixedDepositDetails.getFdAmount());
+							bankAccountDao.subtractFromAccount(
+									fixedDepositDetails.getBankAccountId(), fixedDepositDetails.getFdAmount());
 						} catch (Exception e) {
 							status.setRollbackOnly();
 						}
