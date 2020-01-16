@@ -25,6 +25,7 @@
     <java.mail.version>1.4.7</java.mail.version>
     <activemq.version>5.15.11</activemq.version>
     <jms.version>2.0.1</jms.version>
+    <aspectj.version>1.9.5</aspectj.version>
   </properties>
 
   <dependencies>
@@ -41,6 +42,11 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
       <version>${spring.version}</version>
     </dependency>
     <dependency>
@@ -181,8 +187,12 @@
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
-      <version>1.9.5</version>
-      <scope>runtime</scope>
+      <version>${aspectj.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>${aspectj.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
