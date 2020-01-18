@@ -31,16 +31,15 @@
 								style="color: #C11B17;"><form:errors path="depositAmount"/></font></td>
 						</tr>
 						<tr>
-							<td class="td"><b>Tenure (in months):</b></td>
-							<td class="td"><form:input path="tenure" /><font
-								style="color: #C11B17;"><form:errors path="tenure"/></font></td>
+							<td class="td"><b>Maturity date:</b></td>
+							<td class="td"><form:input path="maturityDate" /><font
+								style="color: #C11B17;"><form:errors path="maturityDate"/></font></td>
 						</tr>
 						<tr>
 							<td class="td"><b>Email:</b></td>
 							<td class="td"><form:input path="email" /><font
 								style="color: #C11B17;"><form:errors path="email"/></font></td>
 						</tr>
-					</table>
 				</td>
 			</tr>
 			<tr align="left">

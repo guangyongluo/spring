@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>Create a new fixed deposit</title>
+<title>Edit a fixed deposit</title>
 <style type="text/css">
 .td {
 	font-family: 'arial';
@@ -13,20 +13,20 @@
 </style>
 </head>
 <body>
-	<form:form commandName="editableFixedDepositDetails" name="editFixedDepositForm" method="POST"
+	<form:form modelAttribute="editableFixedDepositDetails" name="editFixedDepositForm" method="POST"
 		action="${pageContext.request.contextPath}/fixedDeposit?fdAction=edit">
 		<table align="left" style="padding-left: 300px;">
 			<tr>
 				<td
 					style="font-family: 'arial'; font-size: 16px; font-weight: bold;"
-					align="left">Open Fixed deposit</td>
+					align="left">Edit fixed deposit</td>
 			</tr>
 			<tr align="left">
 				<td>
 					<table class="border" cellpadding="10">
 						<tr>
 							<td class="td"><b>Id:</b></td>
-							<td class="td"><form:input path="id" readonly="true"/></td>
+							<td class="td"><b><c:out value="${editableFixedDepositDetails.id}"/></b></td>
 						</tr>
 						<tr>
 							<td class="td"><b>Amount (in USD):</b></td>
@@ -34,9 +34,9 @@
 								style="color: #C11B17;"><form:errors path="depositAmount"/></font></td>
 						</tr>
 						<tr>
-							<td class="td"><b>Tenure (in months):</b></td>
-							<td class="td"><form:input path="tenure" /><font
-								style="color: #C11B17;"><form:errors path="tenure"/></font></td>
+							<td class="td"><b>Maturity date:</b></td>
+							<td class="td"><form:input path="maturityDate" /><font
+								style="color: #C11B17;"><form:errors path="maturityDate"/></font></td>
 						</tr>
 						<tr>
 							<td class="td"><b>Email:</b></td>

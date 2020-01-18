@@ -1,16 +1,21 @@
-package com.vilin.spring.chapter13.session.web;
+package com.vilin.spring.chapter13.databinding.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.vilin.spring.chapter13.session.domain.FixedDepositDetails;
-import com.vilin.spring.chapter13.session.service.FixedDepositService;
+import com.vilin.spring.chapter13.databinding.domain.FixedDepositDetails;
+import com.vilin.spring.chapter13.databinding.service.FixedDepositService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,10 +24,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 @RequestMapping(path = "/fixedDeposit")
-@SessionAttributes(names = { "newFixedDepositDetails", "editableFixedDepositDetails" }, types = {FixedDepositDetails.class})
+@SessionAttributes(names = { "newFixedDepositDetails", "editableFixedDepositDetails" })
 public class FixedDepositController {
 	private static Logger logger = LogManager.getLogger(FixedDepositController.class);
 
@@ -54,9 +58,9 @@ public class FixedDepositController {
 	public String openFixedDeposit(
 			@ModelAttribute(name = "newFixedDepositDetails") FixedDepositDetails fixedDepositDetails,
 			BindingResult bindingResult, SessionStatus sessionStatus) {
-
+		
 		new FixedDepositDetailsValidator().validate(fixedDepositDetails, bindingResult);
-
+		
 		if (bindingResult.hasErrors()) {
 			logger.info("openFixedDeposit() method: Validation errors - re-displaying form for opening a new fixed deposit");
 			return "createFixedDepositForm";
@@ -72,7 +76,6 @@ public class FixedDepositController {
 	public String editFixedDeposit(
 			@ModelAttribute("editableFixedDepositDetails") FixedDepositDetails fixedDepositDetails,
 			BindingResult bindingResult, SessionStatus sessionStatus) {
-
 		new FixedDepositDetailsValidator().validate(fixedDepositDetails,
 				bindingResult);
 
@@ -101,5 +104,18 @@ public class FixedDepositController {
 		modelMap.put("editableFixedDepositDetails", fixedDepositDetails);
 		logger.info("viewFixedDepositDetails() method: Fixed deposit details loaded from data store. Showing form for editing the loaded fixed deposit.");
 		return new ModelAndView("editFixedDepositForm", modelMap);
+	}
+
+	@InitBinder(value = "newFixedDepositDetails")
+	public void initBinder_New(WebDataBinder webDataBinder) {
+		logger.info("initBinder_New() method: Registering CustomDateEditor");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("MM-dd-yyyy"), false));
+	}
+
+	@InitBinder(value = "editableFixedDepositDetails")
+	public void initBinder_Edit(WebDataBinder webDataBinder) {
+		logger.info("initBinder_Edit() method: Registering CustomDateEditor");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("MM-dd-yyyy"), false));
+		webDataBinder.setDisallowedFields("id");
 	}
 }
