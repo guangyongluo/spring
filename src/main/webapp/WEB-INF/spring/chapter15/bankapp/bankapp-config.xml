@@ -9,7 +9,7 @@
 
 
 	<mvc:annotation-driven />
-	<!--
+
 	<mvc:interceptors>
 
 		<bean class="com.vilin.spring.chapter15.bankapp.web.MyRequestHandlerInterceptor" />
@@ -19,7 +19,7 @@
 		</bean>
 
 	</mvc:interceptors>
-    -->
+
 	<context:component-scan base-package="com.vilin.spring.chapter15.bankapp.web" />
 
 
@@ -29,11 +29,9 @@
 		<property name="cacheSeconds" value="10"/>
 	</bean>
 
-	<!--
 	<bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver" id="localeResolver">
 		<property name="cookieName" value="mylocale" />
 	</bean>
-    -->
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/chapter15/bankapp/" />

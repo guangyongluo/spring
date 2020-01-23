@@ -22,7 +22,7 @@
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath*:/META-INF/spring/chapter15/async/bankapp/webservice/applicationContext.xml</param-value>
+    <param-value>classpath*:/META-INF/spring/chapter15/bankapp/applicationContext.xml</param-value>
   </context-param>
 
 
@@ -35,7 +35,7 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/spring/chapter15/async/bankapp/webservice/webservice-config.xml</param-value>
+      <param-value>/WEB-INF/spring/chapter15/bankapp/bankapp-config.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
     <async-supported>true</async-supported>
