@@ -9,8 +9,7 @@
 
 	<mvc:annotation-driven conversion-service="myConversionService" />
 
-	<bean id="myConversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	<bean id="myConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
 				<bean class="com.vilin.spring.chapter15.converter.formatter.converter.IdToFixedDepositDetailsConverter" />
@@ -26,7 +25,7 @@
 	<context:component-scan base-package="com.vilin.spring.chapter15.converter.formatter.web" />
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/converter/formatter/" />
+		<property name="prefix" value="/WEB-INF/jsp/chapter15/converter/formatter/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
