@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 启用缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 允许JDBC支持生成键。 -->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!-- 配置默认执行器，REUSE执行器重用预处理语句。 -->
+        <setting name="defaultExecutorType" value="REUSE"/>
+        <!-- 延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- <setting name="aggressiveLazyLoading" value="false"/> -->
+        <!-- 设置超时时间 -->
+        <setting name="defaultStatementTimeout" value="25000"/>
+    </settings>
+
+    <!-- 定义别名 -->
+    <typeAliases>
+        <!--
+        <typeAlias alias="role" type="com.vilin.mybatis.chapter02.po.Role"/>
+        -->
+
+        <package name="com.vilin.spring.integration.domain"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="com/vilin/spring/integration/dao/RoleDaoMapper.xml"/>
+        <mapper resource="com/vilin/spring/integration/dao/UserDaoMapper.xml"/>
+    </mappers>
+</configuration>

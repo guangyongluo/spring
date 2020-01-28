@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 支持注解  -->
+	<context:annotation-config/>
+
+	<context:component-scan base-package="com.vilin.spring.integration.domain, com.vilin.spring.integration.dao, com.vilin.spring.integration.service" />
+
+	<!-- 数据源，注入我们所需的数据源 -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/TestDB</value>
+		</property>
+	</bean>
+
+	<!-- MyBatis的SqlSessionFactory  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"  scope="prototype">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:META-INF/spring/integration/sql-map-config.xml"/>
+	</bean>
+
+	<!-- SqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+
+	<!-- 事务管理 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+    <!-- 使用注解管理事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+	<!-- 采用自动扫描方式创建mapper bean -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.vilin.spring.integration.dao"/>
+		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+		<property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+ 	</bean>
+</beans>
