@@ -20,7 +20,7 @@
     <log4j.version>2.11.1</log4j.version>
     <junit.version>4.12</junit.version>
     <mysql.version>8.0.13</mysql.version>
-    <mongodb.version>3.12.0</mongodb.version>
+    <mongodb.version>3.12.8</mongodb.version>
     <querydsl.version>4.2.1</querydsl.version>
     <java.mail.version>1.4.7</java.mail.version>
     <activemq.version>5.15.11</activemq.version>
